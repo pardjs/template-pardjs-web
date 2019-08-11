@@ -17,20 +17,24 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "@nuxtjs/axios": "^5.5.4",
+    "@nuxtjs/pwa": "^3.0.0-beta.16",
+    "axios": "^0.18.0",
+    "nuxt": "^2.8.1"
   },
   "scripts": {
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
-    "build": "tsc",
-    "build:doc": "typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache --coverage --coverageReporters=text-lcov | coveralls",
     "commit": "git-cz",
     "precommit": "lint-staged",
-    "release": "np",
-    "prerelease": "npm run build"
+    "dev": "nuxt",
+    "start": "nuxt start",
+    "release": "echo 'Need to integrate'",
+    "prerelease": "npm run generate"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.6.1",
@@ -38,18 +42,24 @@
     "@types/jest": "^24.0.13",
     "@types/nock": "^10.0.3",
     "@types/node": "^12.0.2",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^24.8.0",
     "commitizen": "^3.1.1",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "git-cz": "^3.0.1",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
     "jest-config": "^24.8.0",
     "lint-staged": "^8.1.7",
     "nock": "^10.0.6",
+    "nodemon": "^1.19.1",
     "np": "^5.0.2",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.1.0",
@@ -58,7 +68,8 @@
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.14.2",
     "typedoc-plugin-nojekyll": "^1.0.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "vue-jest": "^3.0.4"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -72,30 +83,24 @@
     }
   },
   "jest": {
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "^~/(.*)$": "<rootDir>/$1",
+      "^vue$": "vue/dist/vue.common.js"
     },
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
+      "js",
+      "vue",
+      "json"
     ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 70,
-        "functions": 85,
-        "lines": 85,
-        "statements": 85
-      }
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest"
     },
+    "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/*.{js,ts}"
+      "<rootDir>/components/**/*.vue",
+      "<rootDir>/pages/**/*.vue"
     ]
   },
   "prettier": {
