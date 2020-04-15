@@ -1,116 +1,43 @@
 {
-  "name": "template",
-  "version": "0.0.1",
-  "description": "The description for the module",
-  "keywords": [],
-  "main": "dist/src/index.js",
-  "files": [
-    "dist"
-  ],
-  "author": "Dozto <do021service@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pardjs/notification.git"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=8.0.0"
-  },
+  "name": "template-pardjs-web",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@nuxtjs/axios": "^5.5.4",
-    "@nuxtjs/pwa": "^3.0.0-beta.16",
-    "axios": "^0.18.0",
-    "nuxt": "^2.8.1"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
-    "lint": "prettier --write",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "test:prod": "npm run lint && npm run test -- --no-cache --coverage --coverageReporters=text-lcov | coveralls",
-    "commit": "git-cz",
-    "precommit": "lint-staged",
-    "dev": "nuxt",
-    "start": "nuxt start",
-    "prerelease": "npm run generate",
-    "release": "sh ./scripts/version.sh",
-    "predeploy": "terraform init ./.deploy",
-    "deploy": "terraform apply -auto-approve -refresh=true -var-file=project-info.json ./.deploy",
-    "postdeploy": "rm ./terraform.tfstate && rm ./terraform.tfstate.backup"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.6.1",
-    "@commitlint/config-conventional": "^7.6.0",
-    "@types/jest": "^24.0.13",
-    "@types/nock": "^10.0.3",
-    "@types/node": "^12.0.2",
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^24.8.0",
-    "commitizen": "^3.1.1",
-    "coveralls": "^3.0.3",
-    "cross-env": "^5.2.0",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "git-cz": "^3.0.1",
-    "husky": "^2.3.0",
-    "jest": "^24.8.0",
-    "jest-config": "^24.8.0",
-    "lint-staged": "^8.1.7",
-    "nock": "^10.0.6",
-    "nodemon": "^1.19.1",
-    "np": "^5.0.2",
-    "prettier": "^1.18.2",
-    "rimraf": "^2.6.3",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.5.3",
-    "vue-jest": "^3.0.4"
-  },
-  "lint-staged": {
-    "*.{js, json, vue, html, css, sass, scss, less, gql, md, yaml, yml}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1",
-      "^~/(.*)$": "<rootDir>/$1",
-      "^vue$": "vue/dist/vue.common.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "vue",
-      "json"
-    ],
-    "transform": {
-      "^.+\\.js$": "babel-jest",
-      ".*\\.(vue)$": "vue-jest"
-    },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "<rootDir>/components/**/*.vue",
-      "<rootDir>/pages/**/*.vue"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^0.9.1",
+    "node-sass": "^4.13.1",
+    "postcss-px-to-viewport": "^1.1.1",
+    "react-app-rewired": "^2.1.5"
   }
 }
